@@ -1,8 +1,9 @@
-import os, json
+import os, json, requests
 
 def execute(question: str, parameter):
-        print(f"File Name: {os.path.basename(__file__)[0]}")
-        return {
-            "GA_No": {os.path.basename(__file__)},
-            "parameters": parameter
-        }
+    # URL and parameters
+    url = parameter["url"]
+    params = {"email": parameter["email"]}
+    # Make the GET request
+    response = requests.get(url, params=params)
+    return response.text
